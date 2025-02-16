@@ -43,4 +43,4 @@ Thumbs.db
 
 
 ## Backend .env file
-synflow_be/.env
+./synflow_be/.env
