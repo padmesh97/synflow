@@ -35,11 +35,20 @@ jobs:
           git commit -m "commit"
           echo Build created successfully..................
 
-      - name: FTP-Deploy-Action
+      - name: Deploy Frontend
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ftpupload.net
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/synflow/
+          local-dir: ./dist/synflow/browser
           server-dir: htdocs/synflow/
+
+      - name: Deploy Backend
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftpupload.net
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./synflow_be
+          server-dir: htdocs/synflow/synflow_be
