@@ -41,5 +41,5 @@ jobs:
           server: ftp://ftpupload.net/htdocs
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/cosmos
+          local-dir: ./dist/synflow
           server-dir: synflow/
