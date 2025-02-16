@@ -15,6 +15,7 @@
           "options": {
             "outputPath": "dist/synflow",
             "index": "src/index.html",
+            "baseHref": "/synflow/",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"

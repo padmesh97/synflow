@@ -54,7 +54,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 
-//VALUES FOR ENVIRONMENT = [development,testing,production]
+//VALUES FOR ENVIRONMENT
 define('ENVIRONMENT', 'development');
 
 /*

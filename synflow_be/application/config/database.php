@@ -73,35 +73,30 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $active_group  = 'default';
 $query_builder = true;
 
-// $db['default'] = array(
-// 	'dsn'	=> '',
-// 	'hostname' => 'localhost',
-// 	'username' => '',
-// 	'password' => '',
-// 	'database' => '',
-// 	'dbdriver' => 'mysqli',
-// 	'dbprefix' => '',
-// 	'pconnect' => FALSE,
-// 	'db_debug' => (ENVIRONMENT !== 'production'),
-// 	'cache_on' => FALSE,
-// 	'cachedir' => '',
-// 	'char_set' => 'utf8',
-// 	'dbcollat' => 'utf8_general_ci',
-// 	'swap_pre' => '',
-// 	'encrypt' => FALSE,
-// 	'compress' => FALSE,
-// 	'stricton' => FALSE,
-// 	'failover' => array(),
-// 	'save_queries' => TRUE
-// );
+if (file_exists(FCPATH . '.env')) {
+    $lines = file(FCPATH . '.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) {
+            continue; // Skip comments
+        }
+        list($name, $value) = explode('=', $line, 2);
+        $name               = trim($name);
+        $value              = trim($value);
+        if (! array_key_exists($name, $_SERVER) && ! array_key_exists($name, $_ENV)) {
+            putenv("$name=$value");
+            $_ENV[$name] = $value;
+        }
+    }
+}
+
 switch (ENVIRONMENT) {
     case 'development':
         $db['default'] = [
             'dsn'          => '',
-            'hostname'     => 'localhost',
-            'username'     => 'root',
-            'password'     => '',
-            'database'     => 'synflow',
+            'hostname'     => $_ENV['DB_HOST'],
+            'username'     => $_ENV['DB_USER'],
+            'password'     => $_ENV['DB_PASSWORD'],
+            'database'     => $_ENV['DB_DATABASE'],
             'dbdriver'     => 'mysqli',
             'dbprefix'     => '',
             'pconnect'     => false,
@@ -121,10 +116,10 @@ switch (ENVIRONMENT) {
     case 'production':
         $db['default'] = [
             'dsn'          => '',
-            'hostname'     => 'your-live-host',
-            'username'     => 'live_user',
-            'password'     => 'secure_password',
-            'database'     => 'synflow_prod',
+            'hostname'     => $_ENV['DB_HOST'],
+            'username'     => $_ENV['DB_USER'],
+            'password'     => $_ENV['DB_PASSWORD'],
+            'database'     => $_ENV['DB_DATABASE'],
             'dbdriver'     => 'mysqli',
             'dbprefix'     => '',
             'pconnect'     => false,
