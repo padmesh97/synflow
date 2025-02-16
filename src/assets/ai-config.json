@@ -1,0 +1,65 @@
+{
+    "tasks":
+    [
+    	{
+    		"name": "Please select your task"	
+    	},
+        {
+        	"id":"task1",
+            "name": "Text Generation",
+            "template": ["generateText","paraphraseText"]
+        },
+        {
+        	"id":"task2",
+            "name": "Image Generation",
+            "template": ["generateImage"]
+        },
+        {
+        	"id":"task3",
+            "name": "Image Generation(no background)",
+            "template": ["generateImage","removeImgBg"]
+        }
+    ],
+    "blocks":{
+        "generateText":{
+            "label": "Text Generator",
+            "api": "/api/generateContent",
+            "input":{
+            	"type": "TEXT"
+            },
+            "output": {
+            	"type":"TEXT"
+            }
+        },
+        "paraphraseText":{
+            "label": "Paraphraser",
+            "api": "/api/paraphraseText",
+            "input":{
+            	"type": "TEXT"
+            },
+            "output": {
+            	"type":"TEXT"
+            }
+        },
+        "generateImage":{
+            "label": "Image Generator",
+            "api": "/api/generateContent",
+            "input":{
+            	"type": "TEXT"
+            },
+            "output": {
+            	"type":"IMAGE"
+            }
+        },
+        "removeImgBg":{
+            "label": "Image Background Remove",
+            "api": "/api/generateContent",
+            "input":{
+            	"type": "IMAGE"
+            },
+            "output": {
+            	"type":"IMAGE"
+            }
+        }
+    }
+}

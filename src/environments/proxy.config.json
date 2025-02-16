@@ -1,0 +1,7 @@
+{
+  "/synflow_be": {
+    "target": "http://localhost",
+    "secure": false,
+    "pathRewrite": {"^/synflow_be" : "/synflow/synflow_be"}
+  }
+}
