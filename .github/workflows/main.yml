@@ -41,7 +41,7 @@ jobs:
           server: ftpupload.net
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/synflow/browser
+          local-dir: ./dist/synflow/browser/
           server-dir: htdocs/synflow/
 
       - name: Deploy Backend
@@ -50,5 +50,5 @@ jobs:
           server: ftpupload.net
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./synflow_be
-          server-dir: htdocs/synflow/synflow_be
+          local-dir: ./synflow_be/
+          server-dir: htdocs/synflow/synflow_be/
