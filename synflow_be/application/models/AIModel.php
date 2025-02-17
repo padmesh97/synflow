@@ -60,7 +60,7 @@ class AIModel extends CI_Model
     {
         $url = "https://api.openai.com/v1/chat/completions";
 
-        $openai_api_key = getenv('OPENAI_KEY');
+        $openai_api_key = $this->DB_CONFIGS['OPENAI_KEY'];
 
         // Proper paraphrasing prompt for ChatGPT
         $prompt = "Paraphrase the following text while keeping the original meaning:\n\n\"$text\"";
