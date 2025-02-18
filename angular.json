@@ -66,15 +66,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options":{
-            "browserTarget": "synflow:build",
-            "proxyConfig": "src/environments/proxy.config.json"
-          },
           "configurations": {
             "prod": {
               "buildTarget": "synflow:build:prod"
             },
             "dev": {
+              "proxyConfig": "src/environments/proxy.config.json",
               "buildTarget": "synflow:build:dev"
             }
           },
