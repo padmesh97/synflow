@@ -54,8 +54,8 @@
  * NOTE: If you change these, also change the error_reporting() code below
  */
 
-//VALUES FOR ENVIRONMENT
-define('ENVIRONMENT', 'development');
+//VALUES FOR ENVIRONMENT['development','production','testing']
+define('ENVIRONMENT', 'production');
 
 /*
  *---------------------------------------------------------------
