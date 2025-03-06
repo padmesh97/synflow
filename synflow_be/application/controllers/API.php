@@ -5,7 +5,7 @@ require_once APPPATH . 'libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class API extends REST_Controller
+class Api extends REST_Controller
 {
 
     public function __construct()
@@ -54,5 +54,19 @@ class API extends REST_Controller
 
         $response = $this->AIModel->checkGrammar($text);
         echo json_encode($response);
+    }
+
+    public function generateImage_post()
+    {
+        $data = json_decode(file_get_contents("php://input"), true);
+        if (! isset($data['input'])) {
+            $response['status'] = 'error';
+            $response['error']  = 'Input field \'input\' required';
+            $this->response($response, 400);
+        } else {
+            $formInput = $data['input'];
+            $response  = $this->AIModel->generateImage(trim($formInput));
+            $this->response($response, 200);
+        }
     }
 }

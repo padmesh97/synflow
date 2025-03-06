@@ -43,7 +43,7 @@
         },
         "generateImage":{
             "label": "Image Generator",
-            "api": "/api/generateContent",
+            "api": "/api/generateImage",
             "input":{
             	"type": "TEXT"
             },

@@ -91,6 +91,33 @@ class AIModel extends CI_Model
         }
     }
 
+    public function generateImage($prompt, $size = "256x256")
+    {
+        $url            = "https://api.openai.com/v1/images/generations";
+        $openai_api_key = $this->DB_CONFIGS['OPENAI_KEY'];
+
+        $data = [
+            "model"  => "dall-e-2",
+            "prompt" => $prompt,
+            "n"      => 1,
+            "size"   => $size,
+        ];
+
+        $response = $this->callAPI($url, $data, $openai_api_key);
+
+        if (isset($response['data'][0]['url'])) {
+            return [
+                "status" => "success",
+                "output" => $response['data'][0]['url'],
+            ];
+        } else {
+            return [
+                "status" => "error",
+                "error"  => isset($response['error']) ? $response['error']['message'] : "Unknown error",
+            ];
+        }
+    }
+
     public function checkGrammar($text)
     {
         $data     = ["text" => $text];

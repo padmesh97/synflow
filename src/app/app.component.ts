@@ -28,6 +28,7 @@ export class AppComponent {
   taskSelected: boolean = false;
   userInput: string = '';
   inputType: string = 'TEXT'; // Default input type
+  outputType: string = 'TEXT'; // Default input type
   selectedFile: File | null = null; // Store selected file
   pipelineBlocks: Block[] = [];
   pipeLineResponseStatus: string = '';
@@ -52,6 +53,7 @@ export class AppComponent {
           if (block) {
             if (blockCount == 1) {
               this.inputType = block.input.type;
+              this.outputType = block.output.type;
             }
             this.pipelineBlocks.push(block);
             blockCount++;
@@ -80,6 +82,7 @@ export class AppComponent {
   refreshBlocks(block: Block){
     if(this.pipelineBlocks.length > 0){
       this.inputType = this.pipelineBlocks[0].input.type;
+      this.outputType = this.pipelineBlocks[0].output.type;
       this.taskSelected = true;
     }
     else{
@@ -88,6 +91,7 @@ export class AppComponent {
   }
 
   async executePipeline() {
+    this.pipeLineResponseStatus = 'loading';
     if (!this.userInput && !this.selectedFile && this.pipelineBlocks.length > 0) {
         alert('Please supply correct input details before executing.');
         return;
@@ -119,7 +123,6 @@ export class AppComponent {
           this.pipeLineResponseStatus = 'success';
         } else {
           this.pipeLineResponseStatus = 'error';
-          console.log("exec1");
           this.pipeLineResponse = `Error processing block-[${block.label}] with ERROR: ${response.error}`;
           return;
         }
