@@ -39,6 +39,11 @@ export class AppComponent {
   }
 
   selectTask(taskId: string) {
+    this.pipelineBlocks.forEach(block => {
+      if (!this.availableBlocks.some(ab => ab.label === block.label)) {
+          this.availableBlocks.push(block);
+      }
+    });
     this.taskSelected = true;
     this.pipelineBlocks = [];
     this.pipeLineResponse = '';
@@ -56,7 +61,11 @@ export class AppComponent {
               this.outputType = block.output.type;
             }
             this.pipelineBlocks.push(block);
+
+            this.availableBlocks = this.availableBlocks.filter(ab => ab.label !== block.label);
             blockCount++;
+          }else{
+            !this.availableBlocks.includes(block)? this.availableBlocks.push(block): this.availableBlocks;
           }
         }
       }
@@ -71,11 +80,13 @@ export class AppComponent {
 
   addBlock(block: Block) {
     this.pipelineBlocks.push(block);
+    this.availableBlocks = this.availableBlocks.filter(ab => ab.label !== block.label);
     this.refreshBlocks(block);
   }
 
   removeBlock(block: Block) {
     this.pipelineBlocks = this.pipelineBlocks.filter(blk => blk.label !== block.label);
+    !this.availableBlocks.includes(block)? this.availableBlocks.push(block): this.availableBlocks;
     this.refreshBlocks(block);
   }
 
