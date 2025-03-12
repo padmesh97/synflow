@@ -17,7 +17,10 @@
 
   <div class="d-flex">
     <div class="border p-3 w-25 bg-light">
-      <h5>Available Blocks</h5>
+      <h5>Available Blocks <span 
+        class="badge rounded-pill text-white px-2 py-1 ms-2"
+        style="background-color: #0d6efd; display: inline-flex; align-items: center; justify-content: center; height: 22px;"
+      >{{ availableBlocks.length }}</span></h5>
       <button *ngFor="let block of availableBlocks" class="btn btn-outline-primary btn-sm w-100 mb-2" (click)="addBlock(block)">
         {{ block?.label }}
       </button>
@@ -34,8 +37,7 @@
     </div>
   </div>
 
-  <button class="btn btn-primary mt-4" (click)="executePipeline()">Run Pipeline</button>
-
+  <button class="btn btn-primary mt-4" (click)="executePipeline()" [disabled]="pipelineBlocks.length === 0" [ngClass]="{ 'btn-secondary': pipelineBlocks.length === 0, 'btn-primary': pipelineBlocks.length > 0 }">Run Pipeline</button>
 
   <!-- API Response Output -->
   <div class="mt-4" *ngIf="pipeLineResponse">
