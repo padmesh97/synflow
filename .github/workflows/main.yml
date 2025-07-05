@@ -42,7 +42,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/synflow/browser/
-          server-dir: cosmoshub.in/htdocs/synflow/
+          server-dir: proj.padmeshkunwar.me/htdocs/synflow/
 
       - name: Deploy Backend
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -51,4 +51,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./synflow_be/
-          server-dir: cosmoshub.in/htdocs/synflow/synflow_be/
+          server-dir: proj.padmeshkunwar.me/htdocs/synflow/synflow_be/
