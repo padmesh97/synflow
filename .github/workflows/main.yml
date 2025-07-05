@@ -33,7 +33,7 @@ jobs:
           git config --global user.email "kunwarpadmesh@yahoo.com"
           git add .
           git commit -m "commit"
-          echo Build created successfully..................
+          echo Build created successfully...................
 
       - name: Deploy Frontend
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
